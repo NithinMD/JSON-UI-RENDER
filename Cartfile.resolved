@@ -1,0 +1,3 @@
+github "SwiftyJSON/SwiftyJSON" "3.1.4"
+github "facebook/css-layout" "efeba90985a02f87c955fcc7a3c67d851357338b"
+github "robb/FLXView" "7989c6ba510b8a7e9203a73e58dcf74415a9b03d"

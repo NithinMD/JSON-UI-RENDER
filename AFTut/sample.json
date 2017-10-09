@@ -1,0 +1,91 @@
+{
+    "children": [
+                 {
+                 "children": [
+                              {
+                              "children": [
+                                           {
+                                           "item": "af-label",
+                                           "props": {
+                                           "appearance": "headline",
+                                           "text": "${event_details.response.details.title}"
+                                           }
+                                           },
+                                           {
+                                           "children": [
+                                                        {
+                                                        "item": "af-label",
+                                                        "props": {
+                                                        "dim": "dim",
+                                                        "margin-left": "10",
+                                                        "appearance": "subhead",
+                                                        "text": "at ${event_details.response.details.venueName}, ${event_details.response.details.location.cityName}"
+                                                        }
+                                                        }
+                                                        ],
+                                           "item": "af-layout",
+                                           "props": {
+                                           "margin-top": "10",
+                                           "af-onclick": "openlocation(event_details.response.details)",
+                                           "direction": "row"
+                                           }
+                                           },
+                                           {
+                                           "children": [
+                                                        {
+                                                        "item": "af-label",
+                                                        "props": {
+                                                        "margin-left": "10",
+                                                        "dim": "dim",
+                                                        "appearance": "subhead",
+                                                        "text": "${timeFormatter(event_details.response.details.startDate)}"
+                                                        }
+                                                        }
+                                                        ],
+                                           "item": "af-layout",
+                                           "props": {
+                                           "margin-bottom": "10",
+                                           "margin-top": "10",
+                                           "af-onclick": "openlocation(event_details.response.details)",
+                                           "direction": "row"
+                                           }
+                                           }
+                                           ],
+                              "item": "af-layout",
+                              "props": {
+                              "padding-right": "18",
+                              "padding-left": "18",
+                              "padding": "10",
+                              "margin": "10",
+                              "bg-color": "#FFFFFF",
+                              "elevation": "level1",
+                              "direction": "column"
+                              }
+                              },
+                              {
+                              "children": [
+                                           {
+                                           "item": "af-label",
+                                           "props": {
+                                           "margin-bottom": "10",
+                                           "appearance": "title",
+                                           "text-color": "#455696",
+                                           "text": "Synopsis"
+                                           }
+                                           }
+                                           ],
+                              "item": "af-layout",
+                              "props": {
+                              "padding": "10",
+                              "weight": "1"
+                              }
+                              }
+                              ],
+                 "item": "af-layout",
+                 "props": {
+                 "direction": "column"
+                 }
+                 }
+                 ],
+    "item": "root"
+}

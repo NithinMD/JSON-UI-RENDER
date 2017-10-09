@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "1dbe69ee17b5779ff7e31e35c8c2883d351eee5c10fa4fe246629405258a83b1",
+      "name" : "FLXView"
+    }
+  ],
+  "commitish" : "7989c6ba510b8a7e9203a73e58dcf74415a9b03d",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}
