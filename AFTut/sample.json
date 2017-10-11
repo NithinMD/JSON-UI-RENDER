@@ -21,7 +21,8 @@
                                                         "appearance": "subhead",
                                                         "text": "at ${event_details.response.details.venueName}, ${event_details.response.details.location.cityName}"
                                                         }
-                                                        }
+                                                        },
+
                                                         ],
                                            "item": "af-layout",
                                            "props": {
