@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     
     let flexView : FLXView = FLXView()
+    var layout : FLXView = FLXView()
     
     var margin_top : Int = 0
     var margin_bottom : Int = 0
@@ -84,28 +85,45 @@ class ViewController: UIViewController {
     // TRAVERSE THE JSON TREE
     
     func traverseTree(node:JSON) {
-       // print(node)
-        let secondLevel = FLXView()
+       
+        
+        
+        
         for (index,each) in node {
             
             if node.dictionary != nil {
                 
                 traverseTree(node: each)
+                
             }
             if let object = node.array {
+                print(index)
+                print(object[Int(index)!]["item"])
                 
-                let subheadView = setupProperties(subjson: object,index: index)
+                if (object[0]["item"] == "af-layout") {
+                    layout = setupLayout(subjson: object,index: index)
+                    
+                    
+                }
+                else if(object[0]["item"] == "af-label"){
+                    let subheadView = setupProperties(subjson: object,index: index)
+                    
+                    layout.addSubview(subheadView)
+                }
                 
-                secondLevel.addSubview(subheadView)
+                
                 
                 
                 traverseTree(node: each)
+                
+                flexView.addSubview(layout)
             }
+            
            
             
         }
         
-        flexView.addSubview(secondLevel)
+        flexView.addSubview(layout)
         
         scrollView.addSubview(flexView)
         
@@ -115,7 +133,7 @@ class ViewController: UIViewController {
     
     
     //SET  MARGINS
-    func label_Margin(margin:JSON) -> (FLXMargins)  {
+    func _Margin(margin:JSON) -> (FLXMargins)  {
         
         
         
@@ -128,14 +146,12 @@ class ViewController: UIViewController {
             margin_right = margin["margin"].intValue
             
             
-            
         }
         else{
             margin_top = margin["margin-top"].intValue
             margin_bottom = margin["margin-bottom"].intValue
             margin_left = margin["margin-left"].intValue
             margin_right = margin["margin-right"].intValue
-            
             
             
         }
@@ -147,8 +163,6 @@ class ViewController: UIViewController {
     
     //SET PADDING
     func label_Padding(padding:JSON) -> (FLXPadding)  {
-        
-        
         
         
         
@@ -197,137 +211,93 @@ class ViewController: UIViewController {
     
     //Setup Properties of subHeading and layout
     
-    func setupProperties(subjson:[JSON] , index:String) -> FLXView {
+    func setupLayout(subjson:[JSON] , index:String) -> FLXView {
+    
+        let bgColor = subjson[Int(index)!]["props"]["bg-color"].stringValue
         
-        print(subjson[Int(index)!]["item"] )
-        let thirdLevel = FLXView()
+        var bgColorValue = String()
+        if (!bgColor.isEmpty) {
+            
+            bgColorValue = bgColor.replacingOccurrences(of: "#", with: "")
+            
+        }
+        else{
+            
+            bgColorValue = "FFFFFF"
         
-        if (subjson[Int(index)!]["item"] == "af-layout") {
-            
-            
-            
+        }
+
+        let thirdLevel = Layout(directions : subjson[Int(index)!]["props"]["direction"].stringValue  ,
+                                bgColor : bgColorValue )
+        
+        
+        
             //Layout Click event
-            
-            if subjson[Int(index)!]["props"]["af-onclick"].isEmpty {
+        
+            if !subjson[Int(index)!]["props"]["af-onclick"].stringValue.isEmpty{
                 let gesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.showAlert(_:)))
-            
+                
                 thirdLevel.addGestureRecognizer(gesture)
             }
             
-            let margins = label_Margin(margin: subjson[Int(index)!]["props"])
+            let margins = _Margin(margin: subjson[Int(index)!]["props"])
             
             
             thirdLevel.flx_margins = margins
-
             
-            let direction = subjson[Int(index)!]["props"]["direction"]
-            
-            
-            
+        
             thirdLevel.childAlignment = .start
+        
             
-            if (direction == "column") {
-                thirdLevel.direction = .column
-            }
-            else{
-                thirdLevel.direction = .row
-            }
+            let padding = label_Padding(padding: subjson[Int(index)!]["props"])
             
+            thirdLevel.padding = padding
+        
             
-            
-            if (subjson[Int(index)!]["children"][0]["props"]["padding"] != nil){
-                
-                padding_top = CGFloat(subjson[Int(index)!]["props"]["padding"].intValue)
-                padding_bottom = CGFloat(subjson[Int(index)!]["props"]["padding"].intValue)
-                padding_right = CGFloat(subjson[Int(index)!]["props"]["padding"].intValue)
-                padding_left = CGFloat(subjson[Int(index)!]["props"]["padding"].intValue)
-                
-            }
-            else{
-                padding_top = CGFloat(subjson[Int(index)!]["props"]["padding-top"].intValue)
-                padding_bottom = CGFloat(subjson[Int(index)!]["props"]["padding-bottom"].intValue)
-                padding_right = CGFloat(subjson[Int(index)!]["props"]["padding-right"].intValue)
-                padding_left = CGFloat(subjson[Int(index)!]["props"]["padding-left"].intValue)
-            }
-            
-            
-            thirdLevel.padding = FLXPaddingMake(padding_top, padding_right, padding_bottom, padding_left)
-            
-            let bgColor = subjson[Int(index)!]["props"]["bg-color"].stringValue
-            
-            if (!bgColor.isEmpty) {
-                let bgColorValue = bgColor.replacingOccurrences(of: "#", with: "")
-                
-                thirdLevel.backgroundColor = UIColor(hex:bgColorValue)
-                
-                
-            }
-            
-            
-        }
-        else if(subjson[Int(index)!]["item"] == "af-label") {
+        
+        return thirdLevel
+    
+    
+    }
+
+    func setupProperties(subjson:[JSON] , index:String) -> FLXView {
+        
+    
+        
+        
+        let titleLevel = FLXView()
         
         
             //Text Color
-            let textColor = subjson[Int(index)!]["children"][0]["props"]["text-color"].stringValue
+            let textColor = subjson[Int(index)!]["props"]["text-color"].stringValue
             
             let textColorValue = textColor.replacingOccurrences(of: "#", with: "")
             
+
             
-            
-            print(subjson[Int(index)!])
             //Text Title
             var titleText = subjson[Int(index)!]["props"]["text"].stringValue.replacingOccurrences(of: "${", with: "")
-            
+        
             titleText = titleText.replacingOccurrences(of: "}", with: "")
             
             
-            //CHeck Appearance type
-            if subjson[Int(index)!]["props"]["appearance"] == "headline" {
-                
-                
-                let title = HeadLine(text: titleText, align: .left)
-                
-                
-                let margins = label_Margin(margin: subjson[Int(index)!]["props"])
-                
-                title.flx_margins = margins
-                
-                
-                title.textColor = UIColor(hex:textColorValue)
-                
-                thirdLevel.addSubview(title)
-            }
-            else if subjson[Int(index)!]["props"]["appearance"] == "subhead" {
-                let title = SubHead(text: titleText, align: .left)
-                
-                let margins = label_Margin(margin: subjson[Int(index)!]["props"])
-                
-                
-                title.flx_margins = margins
-                
-                title.textColor = UIColor(hex:textColorValue)
-                
-                thirdLevel.addSubview(title)
-            }
-            else{
-                let title = Label(text: titleText, align: .left,fontSize: 20)
-                
-                let margins = label_Margin(margin: subjson[Int(index)!]["props"])
-                
-                
-                title.flx_margins = margins
-                
-                title.textColor = UIColor(hex:textColorValue)
-                
-                thirdLevel.addSubview(title)
-            }
+            let title = Label(text: titleText, align: .left, appearance: subjson[Int(index)!]["props"]["appearance"].stringValue , dim : subjson[Int(index)!]["props"]["dim"].stringValue )
             
-        }
+            let margins = _Margin(margin: subjson[Int(index)!]["props"])
+            
+            
+            title.flx_margins = margins
+            
+            title.textColor = UIColor(hex:textColorValue)
+            
+            titleLevel.addSubview(title)
+            
+                       
+        
         
     
 
-        return thirdLevel
+        return titleLevel
     }
     
     
@@ -339,7 +309,7 @@ class ViewController: UIViewController {
 
 //READ THE COLOR FROM HEX TO RGB
 
-extension UIColor {
+/*extension UIColor {
     convenience init(hex: String) {
         let scanner = Scanner(string: hex)
         scanner.scanLocation = 0
@@ -360,4 +330,4 @@ extension UIColor {
     }
 }
 
-
+*/

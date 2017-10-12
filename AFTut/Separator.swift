@@ -12,6 +12,7 @@ open class Separator: UIView {
     public convenience init() {
         self.init(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         
+        
         backgroundColor = UIColor(white: 0.92, alpha: 1)
     }
     

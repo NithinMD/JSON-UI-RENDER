@@ -17,9 +17,8 @@
 		007562DC1F8A1CBA0066466B /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 007562DB1F8A1CBA0066466B /* sample.json */; };
 		007562DE1F8A34470066466B /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007562DD1F8A34470066466B /* SwiftyJSON.framework */; };
 		007562E01F8A34D60066466B /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 007562DD1F8A34470066466B /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0084C4D41F8F8F05002BC6B4 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084C4D31F8F8F05002BC6B4 /* Layout.swift */; };
 		00BD83DB1F8DE2E8000E3C4C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD83DA1F8DE2E8000E3C4C /* Button.swift */; };
-		00BD83DD1F8DE30C000E3C4C /* HeadLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD83DC1F8DE30C000E3C4C /* HeadLine.swift */; };
-		00BD83DF1F8DE32B000E3C4C /* SubHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD83DE1F8DE32B000E3C4C /* SubHead.swift */; };
 		00BD83E11F8DE343000E3C4C /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD83E01F8DE343000E3C4C /* Label.swift */; };
 		00BD83E31F8DE36E000E3C4C /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD83E21F8DE36E000E3C4C /* Separator.swift */; };
 /* End PBXBuildFile section */
@@ -50,9 +49,8 @@
 		007562D71F8A13C30066466B /* FLXView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLXView.framework; path = Carthage/Build/iOS/FLXView.framework; sourceTree = "<group>"; };
 		007562DB1F8A1CBA0066466B /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		007562DD1F8A34470066466B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		0084C4D31F8F8F05002BC6B4 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		00BD83DA1F8DE2E8000E3C4C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		00BD83DC1F8DE30C000E3C4C /* HeadLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadLine.swift; sourceTree = "<group>"; };
-		00BD83DE1F8DE32B000E3C4C /* SubHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubHead.swift; sourceTree = "<group>"; };
 		00BD83E01F8DE343000E3C4C /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		00BD83E21F8DE36E000E3C4C /* Separator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,9 +106,8 @@
 			children = (
 				00BD83E21F8DE36E000E3C4C /* Separator.swift */,
 				00BD83E01F8DE343000E3C4C /* Label.swift */,
-				00BD83DE1F8DE32B000E3C4C /* SubHead.swift */,
-				00BD83DC1F8DE30C000E3C4C /* HeadLine.swift */,
 				00BD83DA1F8DE2E8000E3C4C /* Button.swift */,
+				0084C4D31F8F8F05002BC6B4 /* Layout.swift */,
 			);
 			name = UIElements;
 			sourceTree = "<group>";
@@ -191,12 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				007562B11F8A0F5F0066466B /* ViewController.swift in Sources */,
-				00BD83DF1F8DE32B000E3C4C /* SubHead.swift in Sources */,
 				00BD83E31F8DE36E000E3C4C /* Separator.swift in Sources */,
 				00BD83E11F8DE343000E3C4C /* Label.swift in Sources */,
 				00BD83DB1F8DE2E8000E3C4C /* Button.swift in Sources */,
 				007562AF1F8A0F5F0066466B /* AppDelegate.swift in Sources */,
-				00BD83DD1F8DE30C000E3C4C /* HeadLine.swift in Sources */,
+				0084C4D41F8F8F05002BC6B4 /* Layout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

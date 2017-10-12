@@ -21,8 +21,26 @@
                                                         "appearance": "subhead",
                                                         "text": "at ${event_details.response.details.venueName}, ${event_details.response.details.location.cityName}"
                                                         }
-                                                        },
-
+                                                        },{
+                                                        "item": "af-label",
+                                                        "props": {
+                                                        "dim": "dim",
+                                                        "margin-left": "10",
+                                                        "margin-top":"20",
+                                                        "appearance": "subhead",
+                                                        "text": "TESTER"
+                                                        }
+                                                        },{
+                                                        "children": [
+                                                                     {
+                                                                     "item": "af-label",
+                                                                     "props": {
+                                                                     "margin-left": "50",
+                                                                     "margin-top":"20",
+                                                                     "appearance": "headline",
+                                                                     "text": "SUB HEADLINE"
+                                                                     }
+                                                                     }]}
                                                         ],
                                            "item": "af-layout",
                                            "props": {
