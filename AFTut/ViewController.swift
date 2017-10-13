@@ -20,15 +20,6 @@ class ViewController: UIViewController {
     let flexView : FLXView = FLXView()
     var layout : FLXView = FLXView()
     
-    var margin_top : Int = 0
-    var margin_bottom : Int = 0
-    var margin_left : Int = 0
-    var margin_right : Int = 0
-    
-    var padding_top : CGFloat = 0.0
-    var padding_bottom : CGFloat = 0.0
-    var padding_left : CGFloat = 0.0
-    var padding_right : CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,9 +114,7 @@ class ViewController: UIViewController {
             
         }
         
-        flexView.addSubview(layout)
         
-        scrollView.addSubview(flexView)
         
         
     }
@@ -135,7 +124,11 @@ class ViewController: UIViewController {
     //SET  MARGINS
     func _Margin(margin:JSON) -> (FLXMargins)  {
         
-        
+        var margin_top : Int = 0
+        var margin_bottom : Int = 0
+        var margin_left : Int = 0
+        var margin_right : Int = 0
+
         
         if (margin["margin"].null == nil) {
             
@@ -164,7 +157,10 @@ class ViewController: UIViewController {
     //SET PADDING
     func label_Padding(padding:JSON) -> (FLXPadding)  {
         
-        
+        var padding_top : CGFloat = 0.0
+        var padding_bottom : CGFloat = 0.0
+        var padding_left : CGFloat = 0.0
+        var padding_right : CGFloat = 0.0
         
         if (padding["padding"].null == nil) {
             
@@ -195,15 +191,6 @@ class ViewController: UIViewController {
     
     
     
-    //ALERTVIEW
-    
-    func showAlert(_ sender:UITapGestureRecognizer){
-        // do other task
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        
-    }
     
     
     
@@ -227,35 +214,27 @@ class ViewController: UIViewController {
         
         }
 
-        let thirdLevel = Layout(directions : subjson[Int(index)!]["props"]["direction"].stringValue  ,
+        let layoutLevel = Layout(directions : subjson[Int(index)!]["props"]["direction"].stringValue  ,
                                 bgColor : bgColorValue )
         
         
-        
-            //Layout Click event
-        
-            if !subjson[Int(index)!]["props"]["af-onclick"].stringValue.isEmpty{
-                let gesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.showAlert(_:)))
-                
-                thirdLevel.addGestureRecognizer(gesture)
-            }
             
             let margins = _Margin(margin: subjson[Int(index)!]["props"])
             
             
-            thirdLevel.flx_margins = margins
+            layoutLevel.flx_margins = margins
             
         
-            thirdLevel.childAlignment = .start
+            layoutLevel.childAlignment = .start
         
             
             let padding = label_Padding(padding: subjson[Int(index)!]["props"])
             
-            thirdLevel.padding = padding
+            layoutLevel.padding = padding
         
             
         
-        return thirdLevel
+        return layoutLevel
     
     
     }
@@ -292,10 +271,7 @@ class ViewController: UIViewController {
             
             titleLevel.addSubview(title)
             
-                       
         
-        
-    
 
         return titleLevel
     }
